@@ -10,11 +10,7 @@ from django.views import View
 from django.contrib.auth import logout
 from django.contrib.messages import add_message
 from django.middleware.csrf import get_token
-
-
-SUCCESS = 25
-
-
+SUCCESS = 25   
 @login_required
 def index(request):
     return render(request, 'index.html')
@@ -38,53 +34,45 @@ class ReservationView(LoginRequiredMixin, View):
         form = ReservationForm()
         return render(request, 'reservation.html', {'room': room, 'form': form})
 
+def send_reserve(request, room_id):
+    room = Room.objects.get(id=room_id)
+    if request.method == 'POST':
+        guest_name = request.POST.get('guest_name')
+        guest_email = request.POST.get('guest_email')
+        check_in = request.POST.get('check_in')
+        check_out = request.POST.get('check_out')
+        nombreAdult = request.POST.get('nombreAdult')
+        nombreEnfant = request.POST.get('nombreEnfant')
+        telephone = request.POST.get('telephone')
+        reservation = Reservation.objects.create(
+        room = room,
+        guest_name = guest_name,
+        guest_email = guest_email,
+        check_in = check_in,
+        check_out = check_out,
+        nombreAdult =nombreAdult,
+        nombreEnfant = nombreEnfant,
+        telephone = telephone,
+        )
+        reservation.save()
+        return render(request, 'reservation_confirmation.html',{'reservation':reservation}) 
     
-
-def reservation_confirmation(request, reservation_id):
-    reservation = get_object_or_404(Reservation, pk=reservation_id)
-    return render(request, 'reservation_confirmation.html', {'reservation': reservation})
-
-def room_list(request):
-    rooms = Room.objects.all()
-    return render(request, 'admin/room_list.html', {'rooms': rooms})
-
-def add_room(request):
-    if request.method == 'POST':
-        form = RoomForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('room_list')
-    else:
-        form = RoomForm()
-    return render(request, 'admin/add_room.html', {'form': form})
-
-def edit_room(request, room_id):
-    room = get_object_or_404(Room, pk=room_id)
-    if request.method == 'POST':
-        form = RoomForm(request.POST, request.FILES, instance=room)
-        if form.is_valid():
-            form.save()
-            return redirect('room_list')
-    else:
-        form = RoomForm(instance=room)
-    return render(request, 'admin/edit_room.html', {'form': form})
-
-def delete_room(request, room_id):
-    room = get_object_or_404(Room, pk=room_id)
-    room.delete()
-    return redirect('room_list')
-
 def signup(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = SignUpForm(request.POST) 
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
+            username = form.cleaned_data.get('username') 
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            messages.success(request, 'Votre compte a été créé avec succès.')
-            return redirect('home')
+            if user is not None:
+                login(request, user) 
+                messages.success(request, 'Votre compte a été créé avec succès.')
+                return redirect('home')
+            else: 
+                messages.error(request, 'Authentification échouée. Veuillez vérifier vos informations de connexion.')
+        else:
+            messages.error(request, 'Erreur dans le formulaire. Veuillez vérifier les informations fournies.')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
@@ -94,31 +82,6 @@ def custom_logout(request):
     return redirect('logout_success')
 def logout_success(request):
     return render(request, 'logout_success.html')
-
-
-
-
-def send_reserve(request, room_id):
-    room = Room.objects.get(id=room_id)
-    if request.method == 'POST':
-        guest_name = request.POST.get('guest_name')
-        guest_email = request.POST.get('guest_email')
-        check_in = request.POST.get('check_in')
-        check_out = request.POST.get('check_out')
-
-        reservation = Reservation.objects.create(
-        room = room,
-        guest_name = guest_name,
-        guest_email = guest_email,
-        check_in = check_in,
-        check_out = check_out,
-        )
-        reservation.save()
-
-        add_message(request, SUCCESS, " The reservation has been sent")
-        return render(request, 'reservation_confirmation.html',{'reservation':reservation})
-    
-
 
 def contact_us(request):
     if request.method == 'POST':
@@ -140,4 +103,5 @@ def contact_us(request):
         contact.save()
 
         add_message(request, SUCCESS, " The message has been sent")
-        return render(request, 'contact.html')
+        message = "The message has been sent"
+        return render(request, 'contact.html' , {"message":message })

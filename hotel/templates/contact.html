@@ -1,26 +1,28 @@
 {% extends 'index.html' %}
-{% block content %} 
-{% if messages %}
-<ul class="messages">
-  {% for message in messages %}
-  <div {% if message.tags %} class="{{ message.tags }}" {% endif %}>
-    <div class="alert alert-success m-2" role="alert">{{ message }}</div>
-  </div>
-  {% endfor %}
-</ul>
-{% endif %}
+{% block content %}
+<div class="container mt-5">
+  {% if messages %}
+  <ul class="messages list-unstyled">
+    {% for message in messages %}
+    <div {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+      <div class="alert alert-success m-2" role="alert">{{ message }}</div>
+    </div>
+    {% endfor %}
+  </ul>
+  {% endif %}
 
-<div class="row justify-content-center py-5">
-  <div class="row">
-    <div class="col-md-6 d-flex align-items-stretch">
-      <div class="p-md-5 p-3">
-        <h3 class="mb-4">Contactez</h3>
-        <p>Contactez-nous pour tout ce qui concerne notre entreprise ou nos services.</p>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card p-4 shadow-sm">
+        <h3 class="mb-4">Contactez-nous</h3>
+        <p>Contactez-nous pour tout ce qui concerne notre Hotel ou nos services.</p>
 
         <form action="{% url 'contact_us' %}" method="post" class="">
           {% csrf_token %}
           <div class="row">
-            <div class="col-md-12 p-2">
+            <div class="col-md-12 mb-3">
               <div class="form-group">
                 <input
                   type="text"
@@ -33,7 +35,7 @@
               </div>
             </div>
 
-            <div class="col-md-12 p-2">
+            <div class="col-md-12 mb-3">
               <div class="form-group">
                 <input
                   type="tel"
@@ -46,7 +48,7 @@
               </div>
             </div>
 
-            <div class="col-md-12 p-2">
+            <div class="col-md-12 mb-3">
               <div class="form-group">
                 <input
                   type="email"
@@ -59,7 +61,7 @@
               </div>
             </div>
 
-            <div class="col-md-12 p-2">
+            <div class="col-md-12 mb-3">
               <div class="form-group">
                 <input
                   type="text"
@@ -71,7 +73,7 @@
               </div>
             </div>
 
-            <div class="col-md-12 p-2">
+            <div class="col-md-12 mb-3">
               <div class="form-group">
                 <input
                   type="text"
@@ -84,7 +86,7 @@
               </div>
             </div>
 
-            <div class="col-md-12 p-2">
+            <div class="col-md-12 mb-3">
               <div class="form-group">
                 <textarea
                   name="question"
@@ -93,76 +95,107 @@
                   cols="30"
                   rows="5"
                   placeholder="Message"
+                  required
                 ></textarea>
               </div>
             </div>
 
-            <div class="col-md-12 p-2">
+            <div class="col-md-12">
               <div class="form-group">
                 <input
                   type="submit"
                   value="Envoyer Message"
-                  class="btn"
+                  class="btn btn-primary"
                 />
                 <div class="submitting"></div>
               </div>
             </div>
           </div>
         </form>
-
-        <style>
-          .input-shadow {
-            transition: box-shadow 0.3s ease;
-            border: 1px solid #ccc;
-          }
-
-          .input-shadow:focus {
-            outline: none;
-            box-shadow: 0 0 5px #5300b3;
-            border: 1px solid #5300b3;
-          }
-        </style>
       </div>
     </div>
 
-    <div class="col-md-5 d-flex " style="background-image: url('static/img/image4.jpg')">
-      <div class="w-80 p-md-5 px-2">
-        <h3 class="mb-4 mt-md-4 p-2">LuxeStay</h3>
+    <div class="col-md-5 d-flex align-items-stretch">
+      <div class="w-100 p-4 shadow-sm bg-light">
+        <h3 class="mb-4">LuxeStay</h3>
 
-        <div class="w-80 d-flex align-items-start">
-          <div class="text pl-3">
-            <p>
-              <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"></path>
-              </svg></span>
-              10 Rue El Bassatines, Casablanca 20100
-            </p>
-          </div>
+        <div class="mb-4">
+          <p>
+            <span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+              <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"></path>
+            </svg></span>
+            10 Rue El Bassatines, Casablanca 20100
+          </p>
         </div>
 
-        <div class="w-80 d-flex align-items-center">
-          <div class="text pl-3">
-            <p>
-              <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"></path>
-              </svg></span>
-              <a href="tel:+212613195278" class="text-black">+212 6 13 19 52 78</a>
-            </p>
-          </div>
+        <div class="mb-4">
+          <p>
+            <span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"></path>
+            </svg></span>
+            <a href="tel:+212613195278" class="text-dark text-decoration-none">+212 6 13 19 52 78</a>
+          </p>
         </div>
 
-        <div class="w-80 d-flex align-items-center">
-          <div class="text pl-3">
-            <p>
-              <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"></path>
-              </svg></span>
-              <a href="mailto:contact@ismaeland.com" class="text-black">LuxeStay@gmail.com</a>
-            </p>
-          </div>
+        <div class="mb-4">
+          <p>
+            <span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+              <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"></path>
+            </svg></span>
+            <a href="mailto:contact@ismaeland.com" class="text-dark text-decoration-none">LuxeStay@gmail.com</a>
+          </p>
         </div>
       </div>
     </div>
   </div>
 </div>
+</div>
+<style>
+  .input-shadow {
+    transition: box-shadow 0.3s ease;
+    border: 1px solid #ccc;
+  }
+
+  .input-shadow:focus {
+    outline: none;
+    box-shadow: 0 0 5px #ba9359;
+    border: 1px solid #ba9359;
+  }
+
+  .card {
+    border: none;
+  }
+
+  .card h3 {
+    color: #ba9359;
+  }
+
+  .card p {
+    font-size: 1rem;
+    color: #555;
+  }
+
+  .form-group input, .form-group textarea {
+    font-size: 1rem;
+  }
+
+  .btn-primary {
+    background-color: #ba9359;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background-color: #ba9359;
+  }
+
+  .text {
+    font-size: 1rem;
+    color: #555;
+  }
+
+  .text a {
+    font-weight: bold;
+  }
+</style>
+
 {% endblock %}

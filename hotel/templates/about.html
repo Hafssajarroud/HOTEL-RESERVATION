@@ -18,47 +18,72 @@
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="{% static 'img/image4.jpg' %}" alt="Image 1" class="img-fluid">
+                    <img src="{% static 'img/man.jpg' %}"  style="height: 500px; " alt="Image 1" class="img-fluid">
                 </div>
                 <div class="col-md-6">
-                    <img src="{% static 'img/image5.jpg' %}" alt="Image 2" class="img-fluid">
+                    <img src="{% static 'img/food.jpg' %}" style="height: 500px;"  alt="Image 2" class="img-fluid">
                 </div>
             </div>
         </div>
     </div>
     
-    <div class="row mt-5">
-        <div class="col-md-6">
-            <img src="{% static 'img/gym.jpg' %}" alt="Gymnasium" class="img-fluid">
-            <h2>GYMNASIUM</h2>
-            <p>
-                We have the most equipped gymnasium in the country with an instructor always available.
-            </p>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="font-weight-bold">NOS SERVICES</h2>
+               
+            </div>
         </div>
-        <div class="col-md-6">
-            <img src="{% static 'img/spa.jpg' %}" alt="Helipad" class="img-fluid">
-            <h2>SPA</h2>
-            <p>
-                Indulge in a rejuvenating experience at our world-class spa, offering a range of treatments designed to relax and revitalize.
-            </p>
+        <div class="row mt-4">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'img/gym1.jpg' %}" alt="Gymnasium" class="card-img-top img-fluid" style="height: 300px ;">
+                    <div class="card-body">
+                        <h3 class="card-title">GYMNASIUM</h3>
+                        <p class="card-text">
+                            We have the most equipped gymnasium in the country with an instructor always available.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'img/spa1.jpg' %}" alt="Spa" class="card-img-top img-fluid" style="height: 300px;">
+                    <div class="card-body">
+                        <h3 class="card-title">SPA</h3>
+                        <p class="card-text">
+                            Indulge in a rejuvenating experience at our world-class spa, offering a range of treatments designed to relax and revitalize.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'img/diining.jpg' %}" alt="Dining" class="card-img-top img-fluid" style="height: 300px;">
+                    <div class="card-body">
+                        <h3 class="card-title">DINING</h3>
+                        <p class="card-text">
+                            Experience exquisite dining with a variety of culinary delights prepared by world-renowned chefs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'img/pool1.jpg' %}" alt="Pool" class="card-img-top img-fluid" style="height: 300px;">
+                    <div class="card-body">
+                        <h3 class="card-title">POOL</h3>
+                        <p class="card-text">
+                            Relax and unwind by our luxurious pool with a stunning view, perfect for a refreshing dip.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     
-    <div class="row mt-5">
-        <div class="col-md-6">
-            <img src="{% static 'img/dinning.jpg' %}" alt="Dining" class="img-fluid">
-            <h2>DINING</h2>
-            <p>
-                Experience exquisite dining with a variety of culinary delights prepared by world-renowned chefs.
-            </p>
-        </div>
-        <div class="col-md-6">
-            <img src="{% static 'img/pool.jpg' %}" alt="Pool" class="img-fluid">
-            <h2>POOL</h2>
-            <p>
-                Relax and unwind by our luxurious pool with a stunning view, perfect for a refreshing dip.
-            </p>
-        </div>
-    </div>
+</div>
 </div>
 {% endblock %}

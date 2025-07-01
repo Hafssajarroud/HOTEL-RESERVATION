@@ -1,37 +1,127 @@
 {% extends 'index.html' %}
+{% load static %}
 
 {% block content %}
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header text-center">
-            <h2>Inscription</h2>
-          </div>
-          <div class="card-body">
-            <form method="post">
-              {% csrf_token %}
-              <div class="form-group">
-                {{ form.username.label_tag }}
-                {{ form.username }}
-              </div>
-              <div class="form-group">
-                {{ form.email.label_tag }}
-                {{ form.email }}
-              </div>
-              <div class="form-group">
-                {{ form.password1.label_tag }}
-                {{ form.password1 }}
-              </div>
-              <div class="form-group">
-                {{ form.password2.label_tag }}
-                {{ form.password2 }}
-              </div>
-              <button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
-            </form>
-          </div>
-        </div>
-      </div>
+{% if form.errors %}
+    <div class="alert alert-danger">
+        <ul>
+        {% for field in form %}
+            {% for error in field.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
     </div>
-  </div>
+{% endif %}
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm">
+            <div class="card-header text-center bg-primary text-white">
+                <h2>Inscription</h2>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label for="{{ form.username.id_for_label }}" class="col-md-4 col-form-label text-md-right">{{ form.username.label_tag }}</label>
+                        <div class="col-md-8">
+                            {{ form.username }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="{{ form.email.id_for_label }}" class="col-md-4 col-form-label text-md-right">{{ form.email.label_tag }}</label>
+                        <div class="col-md-8">
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="{{ form.password1.id_for_label }}" class="col-md-4 col-form-label text-md-right">{{ form.password1.label_tag }}</label>
+                        <div class="col-md-8">
+                            {{ form.password1 }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="{{ form.password2.id_for_label }}" class="col-md-4 col-form-label text-md-right">{{ form.password2.label_tag }}</label>
+                        <div class="col-md-8">
+                            {{ form.password2 }}
+                        </div>
+                    </div>
+                    <div class="form-group row mb-0">
+                        <div class="col-md-8 offset-md-4">
+                            <button type="submit" class="btn btn-primary">S'inscrire</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background: url('{% static "/img/login.jpg" %}') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .card {
+        background-color: rgba(255, 255, 255, 0.9);
+        border: none;
+    }
+
+    .card-header {
+        background-color: #edd39b;
+        border-bottom: none;
+    }
+
+    .btn-primary {
+        background-color: #a07e5b;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #b39980;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input.form-control {
+        border: 1px solid #ccc;
+        transition: box-shadow 0.3s ease;
+    }
+
+    input.form-control:focus {
+        box-shadow: 0 0 5px #a07e5b;
+        border-color: #a07e5b;
+    }
+
+    .min-vh-100 {
+        min-height: 100vh;
+    }
+
+    .shadow-sm {
+        box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    }
+
+    .bg-primary {
+        background-color: #a07e5b !important;
+    }
+
+    .text-white {
+        color: #fff !important;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+</style>
 {% endblock %}

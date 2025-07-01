@@ -4,9 +4,10 @@
   <div class="row">
     <div class="col-md-6 p-4">
       <h2 class="display-4">{{ room.name }}</h2>
+      
       <img src="{{ room.image.url }}" class="img-fluid" alt="{{ room.name }}">
     
-      <p class="pr-4">{{ room.description }}</p>
+      <p class="pr-4 mt-3">{{ room.description }}</p>
       <h6>{{ room.price_per_night }} $/nuit</h6>
     </div>
     <div class="col-md-6 p-4">
@@ -15,21 +16,33 @@
 
         {% csrf_token %}
         <div class="form-group">
-          <label for="guest_name">Nom:</label>
+          <label for="guest_name"><strong>Nom:</strong></label>
           <input type="text" class="form-control" id="guest_name" name="guest_name" required>
         </div>
         <div class="form-group">
-          <label for="email">Email:</label>
+          <label for="email"><strong>Email:</strong></label>
           <input type="email" class="form-control" id="guest_email" name="guest_email" required>
         </div>
         <div class="form-group">
-          <label for="check_in">Date d'arrivée:</label>
-          <input type="date" class="form-control" id="check_in" name="check_in" required>
-        </div>
-        <div class="form-group">
-          <label for="check_out">Date de départ:</label>
+          <label for="check_out"><strong>Date de départ:</strong></label>
           <input type="date" class="form-control" id="check_out" name="check_out" required>
         </div>
+        <div class="form-group">
+          <label for="check_in"><strong>Date d'arrivée:</strong></label>
+          <input type="date" class="form-control" id="check_in" name="check_in" required>
+        </div><br>
+        <div class="form-group">
+          <label for="nombreAdult"><strong>Nombre d'adultes :</strong></label>
+          <input type="number" class="form-control" id="nombreAdult" name="nombreAdult" min="0" max="10" required>
+        </div><br>
+        <div class="form-group">
+          <label for="nombreEnfant"><strong>Nombre d'enfants :</strong></label>
+          <input type="number" class="form-control" id="nombreEnfant" name="nombreEnfant" min="0" max="10" required>
+        </div><br>
+        <div class="form-group">
+          <label for="telephone"><strong>Numéro de téléphone:</strong></label>
+          <input type="tel" class="form-control" id="telephone" name="telephone"  required>
+        </div><br>
         <div class="form-group">
           <input type="hidden" name="room_id" value="{{ room.id }}">
         </div>

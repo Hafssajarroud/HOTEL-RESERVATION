@@ -1,13 +1,61 @@
 {% extends 'index.html' %}
-
+{%load static %}
 {% block content %}
-<div class="container p-5">
-    <h2>Connexion</h2>
-    <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="hidden" name="next" value="{{ next }}">
-        <button type="submit" class="btn btn-primary">Se connecter</button>
-    </form>
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-md-8 col-lg-7">
+        <div class="p-5 bg-white shadow-sm rounded">
+            <h2 class="text-center mb-4">Connexion</h2>
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.as_p }}
+                </div>
+                <input type="hidden" name="next" value="{{ next }}">
+                <button type="submit" class="btn btn-primary btn-block mt-3">Se connecter</button>
+            </form>
+        </div>
+    </div>
 </div>
+
+<style>
+    body {
+        background: url('{% static "/img/login.jpg" %}') no-repeat center center fixed;
+        background-size: cover;
+        color: #333;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .bg-white {
+        background-color: #a07e5b;
+    }
+
+    .shadow-sm {
+        box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    }
+
+    .rounded {
+        border-radius: .25rem;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .btn-primary {
+        background-color: #a07e5b;
+        border-color: #a07e5b;
+    }
+
+    .btn-primary:hover {
+        background-color: #a07e5b;
+        border-color: #a07e5b;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+</style>
 {% endblock %}
